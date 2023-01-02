@@ -11,6 +11,7 @@ const formData = {};
 
 refs.form.addEventListener("submit", onFormSubmit);
 refs.textarea.addEventListener("input", throttle(onTextareaInput, 500));
+refs.input.addEventListener("input", throttle(onInputValue, 500));
 refs.form.addEventListener("input", saveValue)
 populateTextarea()
 
@@ -24,6 +25,12 @@ function onFormSubmit(event) {
 };
 
 function onTextareaInput(event) {
+	const message = JSON.stringify(formData);
+
+	localStorage.setItem(STORAGE_KEY, message)
+};
+
+function onInputValue(event) {
 	const message = JSON.stringify(formData);
 
 	localStorage.setItem(STORAGE_KEY, message)
