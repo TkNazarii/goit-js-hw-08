@@ -33,7 +33,7 @@ function onTextareaInput(event) {
 function populateTextarea() {
 	const saveMessage = localStorage.getItem(STORAGE_KEY);
 	const saveMessageParse = JSON.parse(saveMessage);
-	console.log(saveMessageParse); //обєкт
+	console.log(saveMessageParse); 
 	
 	if (saveMessageParse) {
 		refs.input.value = saveMessageParse.email || "";
