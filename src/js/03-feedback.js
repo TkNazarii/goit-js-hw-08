@@ -24,7 +24,6 @@ function onFormSubmit(event) {
 };
 
 function onTextareaInput(event) {
-	// const message = event.target.value;
 	const message = JSON.stringify(formData);
 
 	localStorage.setItem(STORAGE_KEY, message)
