@@ -16,9 +16,16 @@ player.on('timeupdate', throttle(function(data) {
 }, 1000));
 
 const savedSettings = localStorage.getItem("videoplayer-current-time");
-const parsedSettings = JSON.parse(savedSettings);
-console.log(parsedSettings); 
 
-player.setCurrentTime(parsedSettings);
+
+if (savedSettings) {
+	const parsedSettings = JSON.parse(savedSettings) || "";
+	console.log(parsedSettings); 
+	player.setCurrentTime(parsedSettings);
+}
+
+
+
+
 
 
