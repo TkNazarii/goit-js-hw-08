@@ -19,10 +19,35 @@ refs.form.addEventListener("input", saveValue)
 populateTextarea();
 
 // дії при сабміті
+function informFinishMessage() {
+	const finishAsk = confirm("Відправити форму?")
+
+	if (finishAsk) {
+		console.log(formData);
+	};
+};
+
+function emptyEmail() {
+	const valueEmail = refs.input.value;
+	const valueTextarea = refs.textarea.value;
+	
+	if (!valueEmail || !valueTextarea) {
+		alert("Заповніть поле")
+	return false;
+	};
+	return true;
+};
+
+// сабміт форми
 function onFormSubmit(event) {
 	event.preventDefault();
-	console.log("форма відправлення");
+
+	if (!emptyEmail()) {
+		return;
+	};
+	informFinishMessage();
 	
+	// очищає дані в формі
 	event.currentTarget.reset();
 	localStorage.removeItem(STORAGE_KEY);
 	formData = {};
@@ -32,7 +57,7 @@ function onFormSubmit(event) {
 function onInputValue(event) {
 	const message = JSON.stringify(formData);
 
-	localStorage.setItem(STORAGE_KEY, message)
+	localStorage.setItem(STORAGE_KEY, message);
 };
 
 // повертає збережене значення з локал
@@ -55,6 +80,3 @@ function saveValue(event) {
 	formData[event.target.name] = event.target.value;
 	console.log(formData);
 }
-
-
-
